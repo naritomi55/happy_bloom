@@ -1,9 +1,6 @@
-# <happy_bloom>
+# happy_bloom
 
 ## サイト概要
-蕾から満開まで、一輪から花畑まで
-**花**を共有する
-
 ### サイトテーマ
 ちょっとした幸せを与えたり貰ったり、
 見てたらお散歩に出かけたくなるような
@@ -30,7 +27,6 @@
 https://docs.google.com/spreadsheets/d/1GbpfkqXVCfZTfXUO4_oeKqGfGiAELIfGjcxajxKR9tE/edit?usp=sharing
 
 ## 設計書
-<...>
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -40,5 +36,4 @@ https://docs.google.com/spreadsheets/d/1GbpfkqXVCfZTfXUO4_oeKqGfGiAELIfGjcxajxKR
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- 使用検討中です
