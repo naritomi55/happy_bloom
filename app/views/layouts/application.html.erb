@@ -6,11 +6,35 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/088fd842c6.js" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+    <header class="border">
+      <nav class="navbar navbar-expand navbar-light">
+        <div class="container">
+            <h3>
+              <a href="/" class="text-dark">Happy<i class="fa-regular fa-flower-daffodil"></i>Bloom</a>
+            </h3>
+            <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+
+            <% elsif user_signed_in? %>
+
+              <p>ようこそ、さん！</p>
+
+            <% end %>
+            </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="mb-auto">
     <%= yield %>
+    </main>
+    <footer class="border pt-5 pd-4">
+      <div class="container"></div>
+    </footer>
   </body>
 </html>
