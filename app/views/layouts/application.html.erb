@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/088fd842c6.js" crossorigin="anonymous"></script>
   </head>
@@ -20,11 +20,21 @@
             </h3>
             <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
-
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark border' %>
+              </li>
             <% elsif user_signed_in? %>
-
-              <p>ようこそ、さん！</p>
-
+              <p>ようこそ、<%= current_user.name %>さん！</p>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark border' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark border mr-md-3' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark border' %>
+              </li>
             <% end %>
             </ul>
         </div>
