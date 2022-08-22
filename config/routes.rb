@@ -5,12 +5,18 @@ Rails.application.routes.draw do
     root to: 'homes#top'
   end
   scope module: :user do
+    get '/users/:id/favorites' => 'users#favorites'
     root to: 'homes#top'
     get '/users/my_page' => 'users#show'
     get '/users/edit' => 'users#edit'
     patch '/users' => 'users#update'
     get '/users/confirm' => 'users#confirm'
     patch '/users/withdraw' => 'users#withdraw'
+  resources :users, only: [] do
+    member do
+      get :favorites
+    end
+  end
     resources :post_images, only: [:new, :create, :index, :show]
   end
 

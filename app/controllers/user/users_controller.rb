@@ -20,4 +20,10 @@ class User::UsersController < ApplicationController
 
   end
 
+  def favorites
+    @user = User.find(params[:id])
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_images_id)
+    @favorite_posts = PostImage.find(favorites)
+  end
+
 end

@@ -1,2 +1,25 @@
-<h1>User::Users#show</h1>
-<p>Find me in app/views/user/users/show.html.erb</p>
+<div class="container">
+  <h2>マイページ</h2>
+  <div class="row">
+    <div class="user_image">
+      <% if current_user.profile_image.attached? %>
+        <%= image_tag current_user.profile_image, size: "400x400" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "400x400" %>
+      <% end %>
+    </div>
+    <div>
+      <h4 class="border-bottom">name</h4>
+        <p>　<%= current_user.name %></p>
+      <br>
+      <h4 class="border-bottom">introduction</h4>
+        <p>　<%= current_user.introduction %></p>
+      <br>
+      <div>
+        <%= link_to '編集する', users_edit_path, class:'action btn btn-success' %>
+      </div>
+    </div>
+  </div>
+  <%= link_to '投稿一覧', post_images_path(current_user) %>
+  <%= link_to 'いいね一覧',favorites_user_path(current_user) %>
+</div>
