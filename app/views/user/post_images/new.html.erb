@@ -1,2 +1,24 @@
-<h1>User::PostImages#new</h1>
-<p>Find me in app/views/user/post_images/new.html.erb</p>
+<div class="container">
+  <h2>新規投稿</h2>
+  <%= form_with model: @post_image, url: post_images_path, method: :post do |f| %>
+  <div class="row">
+    <div class="post_image">
+      <%= f.label :image do %>
+        <%= f.file_field :image, class: 'uploader', accept: "image/*" %>
+      <% end %>
+    </div>
+    <div class="offset-md-1">
+      <h4 class="border-bottom"><%= f.label "title" %></h4>
+        <%= f.text_field :title %>
+      <br>
+      <br>
+      <h4 class="border-bottom"><%= f.label "introduction" %></h4>
+        <p><%= f.text_field :introduction %></p>
+      <br>
+      <div>
+        <%= f.submit '投稿', class:"btn btn-success" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

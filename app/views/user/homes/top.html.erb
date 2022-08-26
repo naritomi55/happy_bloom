@@ -10,7 +10,9 @@
 <div class="container">
   <div class="icon">
     <%= link_to "花を見る", post_images_path, class: 'btn btn-secondary rounded-circle' %>
-    <%= link_to "花を投稿", new_post_image_path, class: 'btn btn-secondary rounded-circle' %>
+    <% if user_signed_in? %>
+      <%= link_to "花を投稿", new_post_image_path, class: 'btn btn-secondary rounded-circle' %>
+    <% end %>
   </div>
 
 </div>
