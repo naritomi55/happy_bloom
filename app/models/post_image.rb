@@ -5,4 +5,8 @@ class PostImage < ApplicationRecord
   has_many :post_comments
 
   has_one_attached :image
+
+  def favorited_by?(user)
+    favorites.exists?(user_id: user_id)
+  end
 end
