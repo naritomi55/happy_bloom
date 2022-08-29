@@ -9,6 +9,7 @@ class User::PostImagesController < ApplicationController
     if post_image.save
       redirect_to post_image_path(post_image.id)
     else
+      flash[:alret] = "画像を選択してください"
       render :new
     end
   end
@@ -21,6 +22,23 @@ class User::PostImagesController < ApplicationController
     @post_image = PostImage.find(params[:id])
     @post_comment = PostComment.new
   end
+
+  def edit
+    @post_image = PostImage.find(params[:id])
+  end
+
+  def update
+    @post_image = PostImage.find(params[:id])
+    @post_image.update(post_image_params)
+    redirect_to post_image_path(@post_image.id)
+  end
+
+  def destroy
+    @post_image = PostImage.find(params[:id])
+    @post_image.destroy
+    redirect_to post_images_path
+  end
+
 
   private
   def post_image_params

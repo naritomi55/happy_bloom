@@ -1,20 +1,26 @@
 <div class="container">
-  <%= image_tag @post_image.image %>
-
-  <p>ショップ名:<%= @post_image.title %></p>
-
-  <p>説明:<%= @post_image.introduction %></p>
-
-  <p>投稿ユーザー画像:<%= image_tag @post_image.user.profile_image, size:"75x75" %></p>
-
-  <p>ユーザーネーム:<%= @post_image.user.name %></p>
-
-  <p>投稿日:<%= @post_image.created_at.strftime('%Y%m%d')%></p>
+  <h2>投稿詳細</h2>
+  <div class="row">
+    <div class="post_image">
+      <%= image_tag @post_image.image %>
+    </div>
+    <div class="offset-md-1">
+      <h4 class="border-bottom">title</h4>
+        <p><%= @post_image.title %></p>
+      <br>
+      <br>
+      <h4 class="border-bottom">introduction</h4>
+        <p><%= @post_image.introduction %></p>
+      <br>
+       <% if @post_image.user == current_user %>
+        <%= link_to '編集する', edit_post_image_path, class:"btn btn-success" %></br>
+        </br>
+        <%= link_to '削除する', post_image_path(@post_image), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+  <p>投稿日:<%= @post_image.created_at.strftime('%Y/%m/%d')%></p>
   <% if user_signed_in? %>
-    <% if @post_image.user == current_user %>
-      <%= link_to '削除', post_image_path(@post_image), method: :delete %>
-    <% end %>
-
     <% if @post_image.favorited_by?(current_user) %>
       <p>
         <%= link_to post_image_favorites_path(@post_image), method: :delete do %>

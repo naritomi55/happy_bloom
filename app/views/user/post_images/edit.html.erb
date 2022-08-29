@@ -1,13 +1,11 @@
-    <div class="text-danger">
-      <%= flash[:alret] %>
-    </div>
 <div class="container">
-  <h2>新規投稿</h2>
-  <%= form_with model: @post_image, url: post_images_path, method: :post do |f| %>
+  <h2>投稿編集</h2>
+  <%= form_with model: @post_image, url: post_image_path, method: :patch do |f| %>
   <div class="row">
     <div class="post_image">
       <%= f.label :image do %>
-        <%= f.file_field :image, class: 'uploader', accept: "image/*" %>
+        <%= image_tag @post_image.image, class: 'avatar' %>
+        <%= f.file_field :image, class: 'uploader', style: 'display:none', accept: "image/*" %>
       <% end %>
     </div>
     <div class="offset-md-1">
@@ -19,7 +17,7 @@
         <p><%= f.text_field :introduction %></p>
       <br>
       <div>
-        <%= f.submit '投稿', class:"btn btn-success" %>
+        <%= f.submit '完了', class:"btn btn-success" %>
       </div>
     </div>
   </div>
