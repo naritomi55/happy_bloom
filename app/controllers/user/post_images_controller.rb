@@ -15,7 +15,22 @@ class User::PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.page(params[:page])
+    @post_images = PostImage.page(params[:page]).search(params[:search])
+    @tags = Tag.all
+    @post_images = @post_images.where("body LIKE ? ",'&' + params[:search] + '&') if params[:search].present?
+
+    if params[:tag_ids].present?
+      post_image_ids = []
+      params[:tag_ids].each do |key, value|
+        if value == "1"
+          Tag.find_by(name: key).post_image.each do |p|
+            post_image_ids << p.id
+          end
+        end
+      end
+      post_image_ids = post_image_ids.uniq
+      @post_images = @post_images.where(id: post_image_ids) if post_image_ids.present?
+    end
   end
 
   def show

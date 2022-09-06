@@ -8,6 +8,14 @@ class PostImage < ApplicationRecord
 
   validates :image, presence: true
 
+  def self.search(search)
+    if search
+      where(['title LIKE ?',"%#{search}%"])
+    else
+      all
+    end
+  end
+
   def favorited_by?(user)
     favorites.exists?(user_id: user_id)
   end
