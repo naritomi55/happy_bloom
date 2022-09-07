@@ -2,7 +2,12 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    get 'users/show'
+    get 'users/edit'
+  end
+  namespace :admin do
     root to: 'homes#top'
+    resources :users, only: [:show, :edit, :update]
   end
   scope module: :user do
     get '/users/:id/favorites' => 'users#favorites'

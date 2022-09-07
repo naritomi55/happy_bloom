@@ -1,2 +1,27 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<div class="container">
+  <h4>ユーザー一覧</h4>
+  <table class="table table-hover border-bottom table-inverse">
+  　<thead class="thead-light">
+     <tr>
+       <th>氏名</th>
+       <th>メールアドレス</th>
+       <th>ステータス</th>
+      </tr>
+  　</thead>
+    　<tbody>
+    　<% @users.each do |user| %>
+    　   <tr>
+          <td>
+    　      <%= link_to admin_user_path(user.id) do %>
+    　        <%= user.name %>
+    　      <% end %>
+    　     </td>
+    　     <td><%= user.email %></td>
+    　     <td class="text-success font-weight-bold"><%= user.is_active == true ? "有効" : "退会" %></td>
+        </tr>
+    　   <% end %>
+    　</tbody>
+  </table>
+<%= paginate @users %>
+</div>
+</div>
