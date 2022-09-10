@@ -1,8 +1,9 @@
 <div class="container">
   <h3>みんなの投稿</h3>
   <%= form_tag(post_images_path, method: :get) do %>
-    <%= text_field_tag :seach %>
+    <%= text_field_tag :search %>
     <%= submit_tag "検索", :title => nil, class:"button is-info"%>
+
   <% end %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <% @post_images.each do |image| %>

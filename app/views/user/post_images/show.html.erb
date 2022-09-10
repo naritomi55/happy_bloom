@@ -13,7 +13,7 @@
         <p><%= @post_image.introduction %></p>
       <br>
       <% @post_image.tags.each do |tag| %>
-          <span><%= tag.name %></span>
+          <%= link_to tag.name, post_images_path(search: tag.name) %>
       <% end %>
       </br>
        <% if @post_image.user == current_user %>
