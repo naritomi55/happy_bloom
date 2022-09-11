@@ -16,4 +16,7 @@ class User < ApplicationRecord
   has_many :favorites
 
   has_one_attached :profile_image
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end
