@@ -12,15 +12,6 @@ class User::UsersController < ApplicationController
     current_user.update(user_params)
     redirect_to users_my_page_path
   end
-
-  def confirm
-
-  end
-
-  def withdraw
-
-  end
-
   def favorites
     @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:post_images_id)

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :users, only: [:show, :edit, :update]
+    resources :post_images, only: [:show, :index, :destroy]
   end
   scope module: :user do
     get '/users/:id/favorites' => 'users#favorites'
@@ -11,8 +12,6 @@ Rails.application.routes.draw do
     get '/users/my_page' => 'users#show'
     get '/users/edit' => 'users#edit'
     patch '/users' => 'users#update'
-    get '/users/confirm' => 'users#confirm'
-    patch '/users/withdraw' => 'users#withdraw'
   resources :users, only: [] do
     member do
       get :favorites

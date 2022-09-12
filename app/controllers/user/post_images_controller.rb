@@ -16,7 +16,6 @@ class User::PostImagesController < ApplicationController
 
   def index
     @post_images = PostImage.page(params[:page]).search(params[:search])
-    @tags = Tag.all
     @post_images = @post_images.where("introduction LIKE ? ", '%' + params[:search] + '%') if params[:search].present?
 
     if params[:search].present? && Tag.find_by(name: params[:search]).present?
