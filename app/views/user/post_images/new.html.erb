@@ -20,7 +20,7 @@
       <br>
       <div class='form-group'>
       <h4 class="border-bottom"><%= f.label "Tag" %></h4>
-        <p><%= f.text_field :tags %></p>
+        <p><%= f.text_field :tag %></p>
       <br>
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
               <div class='form-check'>
