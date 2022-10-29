@@ -13,10 +13,12 @@
       <div class="card-body">
         <div class="row">
           <div class="col-2">
-            <% if image.user.profile_image.attached? %>
-              <%= image_tag image.user.profile_image, size: "75x75", class:"mt-3 rounded-circle"; %>
-            <% else %>
-              <%=  image_tag 'no_image', size: "75x75", class:"mt-3 rounded-circle"; %>
+            <%= link_to users_my_page_path(image.user.id) do %>
+              <% if image.user.profile_image.attached? %>
+                <%= image_tag image.user.profile_image, size: "75x75", class:"mt-3 rounded-circle"; %>
+              <% else %>
+                <%=  image_tag 'no_image', size: "75x75", class:"mt-3 rounded-circle"; %>
+              <% end %>
             <% end %>
           </div>
           <div class="col-10">

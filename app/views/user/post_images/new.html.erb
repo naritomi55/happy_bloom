@@ -19,6 +19,9 @@
         <p><%= f.text_field :introduction %></p>
       <br>
       <div class='form-group'>
+      <h4 class="border-bottom"><%= f.label "Tag" %></h4>
+        <p><%= f.text_field :tags %></p>
+      <br>
           <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
               <div class='form-check'>
                   <%= tag.label class: 'form-check-label' do %>
