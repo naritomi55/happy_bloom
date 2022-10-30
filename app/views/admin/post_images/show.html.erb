@@ -2,7 +2,7 @@
   <h2>投稿詳細</h2>
   <div class="row">
     <div class="post_image">
-      <%= image_tag @post_image.image %>
+      <%= image_tag @post_image.image, size: "500x400" %>
     </div>
     <div class="offset-md-1">
       <h4 class="border-bottom">title</h4>
@@ -16,6 +16,7 @@
           <%= link_to tag.name, post_images_path(search: tag.name) %>
       <% end %>
       </br>
+
         <%= link_to '削除する', post_image_path(@post_image), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-danger" %>
     </div>
   </div>
@@ -24,7 +25,11 @@
   <% if admin_signed_in? %>
       <p>コメント件数: <%= @post_image.post_comments.count %></p>
       <% @post_image.post_comments.each do |post_comment| %>
-        <p><%= image_tag post_comment.user.profile_image, size:"75x75" %></p>
+        <% if post_comment.user.profile_image.attached? %>
+          <%= image_tag image.user.profile_image, size: "75x75", class:"mt-3 rounded-circle"; %>
+        <% else %>
+          <%=  image_tag 'no_image', size: "75x75", class:"mt-3 rounded-circle"; %>
+        <% end %>
         <%= post_comment.user.name%>
         <%= post_comment.created_at.strftime('%Y%m%d') %><%= post_comment.comment %>
           <%= link_to "削除", post_image_post_comment_path(post_comment.post_image, post_comment), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-danger" %>

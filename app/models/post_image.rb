@@ -7,6 +7,8 @@ class PostImage < ApplicationRecord
   has_one_attached :image
 
   validates :image, presence: true
+  
+  attr_accessor :tag
 
   def self.search(search)
     if search
@@ -17,6 +19,7 @@ class PostImage < ApplicationRecord
   end
 
   def favorited_by?(user)
-    favorites.exists?(user_id: user_id)
+    # binding.pry
+    favorites.exists?(user_id: user.id)
   end
 end

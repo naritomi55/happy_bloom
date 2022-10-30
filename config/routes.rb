@@ -9,14 +9,14 @@ Rails.application.routes.draw do
   scope module: :user do
     get '/users/:id/favorites' => 'users#favorites'
     root to: 'homes#top'
-    get '/users/my_page' => 'users#show'
+    get '/users/my_page/' => 'users#show'
     get '/users/edit' => 'users#edit'
     patch '/users' => 'users#update'
-  resources :users, only: [] do
-    member do
-      get :favorites
+    resources :users, only: [] do
+      member do
+        get :favorites
+      end
     end
-  end
     resources :post_images, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]

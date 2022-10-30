@@ -1,7 +1,12 @@
 class User::UsersController < ApplicationController
 
   def show
-
+    if params[:format].present?
+      @user = User.find(params[:format])
+    else
+      @user = current_user
+    end
+    #byebug
   end
 
   def edit
@@ -14,8 +19,10 @@ class User::UsersController < ApplicationController
   end
   def favorites
     @user = User.find(params[:id])
-    favorites = Favorite.where(user_id: @user.id).pluck(:post_images_id)
+    favorites = Favorite.where(user_id: @user.id).pluck(:post_image_id)
+    # binding.pry
     @favorite_posts = PostImage.find(favorites)
+
   end
 
   private

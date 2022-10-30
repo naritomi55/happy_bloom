@@ -7,6 +7,20 @@ class User::PostImagesController < ApplicationController
     post_image = PostImage.new(post_image_params)
     post_image.user_id = current_user.id
     if post_image.save
+      image_tag_relation = ImageTagRelation.new
+      if post_image.tag.present?
+        tag = Tag.find_by(name: post_image.tag)
+
+        unless tag.present?
+          tag = Tag.new
+          tag.name = post_image.tag
+          tag.save
+        end
+
+        image_tag_relation.tag_id = tag.id
+        image_tag_relation.post_image_id = post_image.id
+        image_tag_relation.save
+      end
       redirect_to post_image_path(post_image.id)
     else
       flash[:alret] = "画像を選択してください"
@@ -59,9 +73,23 @@ class User::PostImagesController < ApplicationController
   end
 
   def update
-    @post_image = PostImage.find(params[:id])
-    @post_image.update(post_image_params)
-    redirect_to post_image_path(@post_image.id)
+    post_image = PostImage.find(params[:id])
+    #byebug
+    post_image.update(post_image_params)
+    if post_image.tag.present?
+        tag = Tag.find_by(name: post_image.tag)
+
+        unless tag.present?
+          tag = Tag.new
+          tag.name = post_image.tag
+          tag.save
+        end
+        image_tag_relation = ImageTagRelation.new
+        image_tag_relation.tag_id = tag.id
+        image_tag_relation.post_image_id = post_image.id
+        image_tag_relation.save
+    end
+    redirect_to post_image_path(post_image.id)
   end
 
   def destroy
@@ -73,7 +101,7 @@ class User::PostImagesController < ApplicationController
 
   private
   def post_image_params
-    params.require(:post_image).permit(:title, :introduction, :image, tag_ids: [])
+    params.require(:post_image).permit(:title, :introduction, :image, :tag, tag_ids: [])
   end
 
 end
