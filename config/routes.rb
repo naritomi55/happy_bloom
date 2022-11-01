@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     patch '/users' => 'users#update'
     resources :users, only: [] do
       member do
+        get :post_images
         get :favorites
       end
     end
