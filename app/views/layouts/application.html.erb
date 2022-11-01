@@ -21,6 +21,9 @@
             <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
+                <%= link_to "タグ編集", admin_tags_path, class: 'nav-link text-dark border mr-md-3' %>
+              </li>
+              <li class="nav-item">
                 <%= link_to "会員一覧", admin_root_path, class: 'nav-link text-dark border mr-md-3' %>
               </li>
               <li class="nav-item">

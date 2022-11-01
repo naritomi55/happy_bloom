@@ -29,7 +29,7 @@ class User::PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.page(params[:page]).search(params[:search])
+    @post_images = PostImage.page(params[:page]).search(params[:search]).order(id: "DESC")
     @post_images = @post_images.where("introduction LIKE ? ", '%' + params[:search] + '%') if params[:search].present?
 
     if params[:search].present? && Tag.find_by(name: params[:search]).present?
@@ -43,7 +43,7 @@ class User::PostImagesController < ApplicationController
     end
 
     unless @post_images.present?
-      @post_images = PostImage.all.page(params[:page])
+      @post_images = PostImage.all.page(params[:page]).order(id: "DESC")
     end
 
     if params[:tag_ids].present?

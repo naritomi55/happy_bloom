@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     resources :users, only: [:show, :edit, :update]
     resources :post_images, only: [:show, :index, :destroy]
+    resources :tags, only: [:index, :edit, :create, :update, :destroy]
   end
   scope module: :user do
     get '/users/:id/favorites' => 'users#favorites'

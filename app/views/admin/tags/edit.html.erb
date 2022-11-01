@@ -1,0 +1,6 @@
+<h1>タグ編集</h1>
+<%= form_with model: @tag,url: admin_tag_path(@tag.id), method: :patch do |f| %>
+  <%= f.label 'タグ' %>
+  <%= f.text_field :name %>
+  <%= f.submit '変更を保存', class:"btn btn-success" %>
+<% end %>
